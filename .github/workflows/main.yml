@@ -17,10 +17,15 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+
       - name: Build and run with Docker Compose
         run: |
           docker-compose up --build -d
-          sleep 10  # Give containers time to start
+          sleep 10
 
       - name: Check backend
         run: |
